@@ -1,0 +1,42 @@
+plugins {
+    id "fabric-loom" version "1.10-SNAPSHOT"
+    id "maven-publish"
+}
+
+version = "1.0.0"
+group = "com.krt"
+archivesBaseName = "krt"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.19.2"
+    mappings "net.fabricmc:yarn:1.19.2+build.28:v2"
+    modImplementation "net.fabricmc:fabric-loader:0.14.21"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.58.6+1.19.2"
+    modImplementation "com.google.code.gson:gson:2.10.1"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+}
+
+processResources {
+    inputs.property "version", project.version
+    filteringCharset "UTF-8"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}
+
+loom {}
