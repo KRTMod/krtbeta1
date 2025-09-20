@@ -1,0 +1,135 @@
+KRT Beta Rail Transit Mod
+
+Mod Introduction
+
+This is a Kunming Rail Transit themed mod developed for the Minecraft Fabric platform, featuring subway tracks, signaling systems, station buildings, and other elements that allow players to experience and build their own subway system in the game.
+
+Inventory Description
+
+The mod includes two main inventory categories:
+
+Tracks & Control Items
+
+• Subway Track: Basic track block for laying subway lines
+
+• Switch Track: Track block that can change direction
+
+• Signal Machine: Device for controlling train operations
+
+• ATP Signal Machine: Advanced Train Protection system signal device
+
+• Announcement System: Device for playing station broadcasts
+
+• Line Configuration Panel: Panel for setting subway line information
+
+• Train Control Panel: Panel for controlling train operations
+
+• Driver Key: Key to activate the train control panel
+
+• Screen Door Key: Key to open screen doors
+
+Station Construction Items
+
+• Screen Door: Safety doors on station platforms
+
+• Platform Block: Basic block for station platforms
+
+• Station Train Arrival Countdown Display: Screen showing arrival time of next train
+
+• Small TV: Small display showing various information
+
+Block Function Description
+
+Track System
+
+• Subway Track: Basic track block supporting minecarts and trains
+
+• Switch Track: Can change track direction to enable train switching
+
+Signaling System
+
+• Signal Machine: Displays red, yellow, and green signals to control train movement
+
+• ATP Signal Machine: Advanced signaling system providing additional train protection
+
+Station Equipment
+
+• Screen Door: Generates safety doors on station platforms, requires screen door key to open
+
+• Announcement System: Broadcast device for station arrival information
+
+• Platform Block: Basic construction material for station platforms
+
+Control Devices
+
+• Line Configuration Panel: Sets subway line names, station lists, and destination information
+
+• Train Control Panel: Controls train startup, stopping, acceleration, and deceleration; requires driver key to activate
+
+• Station Train Arrival Countdown Display: Shows estimated arrival time of next train
+
+• Small TV: Small display showing train schedules, announcements, and other information
+
+Usage Instructions
+
+Building Subway Lines
+
+1. Lay tracks using subway tracks and switch tracks
+2. Place signal machines at key locations to control train operations
+3. Set up station areas at line terminals or intermediate points
+
+Constructing Stations
+
+1. Build station platforms using platform blocks
+2. Install screen doors for safety
+3. Place announcement systems, countdown displays, and small TVs
+4. Configure line information using the line configuration panel
+
+Controlling Trains
+
+1. Right-click the train control panel with driver key to enter driving mode
+2. Use W key to move forward, S key to move backward
+3. Use A key to switch gears
+4. Use E key to toggle between automatic (ATO) and manual control modes
+5. Use ESC key to exit driving mode
+
+Notes
+
+• Trains can only run on tracks and cannot move on regular blocks
+
+• Signal machines and ATP signal machines require proper connections to function
+
+• Screen doors and train control panels require corresponding keys to activate
+
+• Some advanced features require server mode for full functionality
+
+Version Information
+
+• Minecraft Version: 1.19.2
+
+• Fabric API Version: Latest version required
+
+• Java Version: 17 or higher
+
+Update Log
+
+v1.0.0
+
+• Initial version release
+
+• Includes basic track system, signaling system, station buildings, and control devices
+
+Frequently Asked Questions
+
+Q: Why won't my train start?
+A: Make sure you're holding the driver key and have correctly clicked the train control panel
+
+Q: What should I do if screen doors won't open?
+A: Right-click the screen doors with the screen door key
+
+Q: Why does the signal always show red?
+A: Check if tracks are properly connected and ensure the path ahead isn't blocked
+
+Development Team
+
+• Developer: Black Dogge
