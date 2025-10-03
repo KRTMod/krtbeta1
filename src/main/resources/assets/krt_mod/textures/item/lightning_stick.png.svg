@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- 木棍部分 -->
+  <rect x="7" y="8" width="2" height="8" fill="#8B4513"/>
+  <!-- 闪电形状 -->
+  <path d="M8,0 L11,4 L7,4 L12,8 L6,8 L10,12 L8,12 L6,8 L3,4 L8,4 Z" fill="#FFFF00"/>
+  <!-- 闪电发光效果 -->
+  <path d="M8,0 L11,4 L7,4 L12,8 L6,8 L10,12 L8,12 L6,8 L3,4 L8,4 Z" fill="none" stroke="#FFFFAA" stroke-width="0.5"/>
+</svg>

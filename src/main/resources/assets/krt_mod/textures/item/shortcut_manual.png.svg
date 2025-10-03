@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- 背景 -->
+  <rect width="16" height="16" fill="#2C3E50"/>
+  <!-- 书籍封面 -->
+  <rect x="1" y="1" width="14" height="14" rx="1" ry="1" fill="#34495E"/>
+  <!-- 书籍标题区域 -->
+  <rect x="2" y="2" width="12" height="3" fill="#3498DB"/>
+  <!-- 书籍内容模拟 - 快捷键表示 -->
+  <path d="M3 6 L5 6 L5 8 L3 8 Z" fill="none" stroke="#ECF0F1" stroke-width="0.5"/>
+  <text x="4" y="7.5" font-family="monospace" font-size="1.5" fill="#ECF0F1" text-anchor="middle" dominant-baseline="middle">K</text>
+  
+  <path d="M7 6 L9 6 L9 8 L7 8 Z" fill="none" stroke="#ECF0F1" stroke-width="0.5"/>
+  <text x="8" y="7.5" font-family="monospace" font-size="1.5" fill="#ECF0F1" text-anchor="middle" dominant-baseline="middle">S</text>
+  
+  <path d="M11 6 L13 6 L13 8 L11 8 Z" fill="none" stroke="#ECF0F1" stroke-width="0.5"/>
+  <text x="12" y="7.5" font-family="monospace" font-size="1.5" fill="#ECF0F1" text-anchor="middle" dominant-baseline="middle">T</text>
+  
+  <!-- 更多快捷键行 -->
+  <path d="M3 10 L5 10 L5 12 L3 12 Z" fill="none" stroke="#ECF0F1" stroke-width="0.5"/>
+  <text x="4" y="11.5" font-family="monospace" font-size="1.5" fill="#ECF0F1" text-anchor="middle" dominant-baseline="middle">L</text>
+  
+  <path d="M7 10 L9 10 L9 12 L7 12 Z" fill="none" stroke="#ECF0F1" stroke-width="0.5"/>
+  <text x="8" y="11.5" font-family="monospace" font-size="1.5" fill="#ECF0F1" text-anchor="middle" dominant-baseline="middle">C</text>
+  
+  <!-- 侧边装订线 -->
+  <path d="M1.5 1 L1.5 15" stroke="#1A252F" stroke-width="1"/>
+</svg>

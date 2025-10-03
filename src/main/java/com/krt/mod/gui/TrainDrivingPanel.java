@@ -1,11 +1,11 @@
 package com.krt.mod.gui;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
+import net.minecraft.util.math.BlockPos;
 import com.krt.mod.KRTMod;
 import com.krt.mod.entity.TrainEntity;
 import com.krt.mod.system.TrainControlSystem;
@@ -13,16 +13,21 @@ import com.krt.mod.system.LanguageSystem;
 import com.krt.mod.system.LogSystem;
 
 public class TrainDrivingPanel extends Screen {
-    private static final int WIDTH = 400;
-    private static final int HEIGHT = 300;
+    private static final int WIDTH = 450;
+    private static final int HEIGHT = 350;
     private final TrainEntity train;
     private ButtonWidget forwardButton;
     private ButtonWidget backwardButton;
     private ButtonWidget shiftGearButton;
     private ButtonWidget controlModeButton;
     private ButtonWidget emergencyBrakeButton;
+    private ButtonWidget releaseBrakeButton;
+    private ButtonWidget headlightButton;
+    private ButtonWidget hornButton;
     private ButtonWidget closeButton;
     private int gear = 0; // 0: 空挡, 1: 前进1档, 2: 前进2档, -1: 后退1档
+    private boolean headlightsOn = false;
+    private boolean hasHornCooldown = false;
 
     public TrainDrivingPanel(TrainEntity train) {
         super(Text.literal(LanguageSystem.translate("krt.train.driving_panel")));
@@ -35,39 +40,39 @@ public class TrainDrivingPanel extends Screen {
         int y = (height - HEIGHT) / 2;
 
         // 前进按钮
-        forwardButton = ButtonWidget.builder(Text.literal(LanguageSystem.translate("krt.control.forward")), button -> {
+        forwardButton = new ButtonWidget(x + 160, y + 110, 100, 30, Text.literal(LanguageSystem.translate("krt.control.forward")), button -> {
             if (gear >= 0) {
                 gear = Math.min(gear + 1, 2); // 最多2档
             } else {
                 gear = 1; // 从后退切换到前进1档
             }
             updateTrainControl();
-        }).dimensions(x + 150, y + 100, 100, 30).build();
+        });
         addDrawableChild(forwardButton);
 
         // 后退按钮
-        backwardButton = ButtonWidget.builder(Text.literal(LanguageSystem.translate("krt.control.backward")), button -> {
+        backwardButton = new ButtonWidget(x + 50, y + 180, 100, 30, Text.literal(LanguageSystem.translate("krt.control.backward")), button -> {
             if (gear <= 0) {
                 gear = Math.max(gear - 1, -1); // 最多后退1档
             } else {
                 gear = -1; // 从前进切换到后退1档
             }
             updateTrainControl();
-        }).dimensions(x + 50, y + 160, 100, 30).build();
+        });
         addDrawableChild(backwardButton);
 
         // 切换档位按钮
-        shiftGearButton = ButtonWidget.builder(Text.literal(LanguageSystem.translate("krt.control.shift_gear")), button -> {
+        shiftGearButton = new ButtonWidget(x + 160, y + 180, 100, 30, Text.literal(LanguageSystem.translate("krt.control.shift_gear")), button -> {
             cycleGear();
             updateTrainControl();
-        }).dimensions(x + 150, y + 160, 100, 30).build();
+        });
         addDrawableChild(shiftGearButton);
 
         // 控制模式切换按钮
         String currentMode = train.getControlSystem().getControlMode() == TrainControlSystem.TrainControlMode.ATO 
                 ? LanguageSystem.translate("krt.train.ato") 
                 : LanguageSystem.translate("krt.train.manual");
-        controlModeButton = ButtonWidget.builder(Text.literal("模式: " + currentMode), button -> {
+        controlModeButton = new ButtonWidget(x + 280, y + 110, 100, 30, Text.literal("模式: " + currentMode), button -> {
             if (train.getControlSystem().getControlMode() == TrainControlSystem.TrainControlMode.ATO) {
                 train.getControlSystem().setControlMode(TrainControlSystem.TrainControlMode.MANUAL);
             } else {
@@ -78,21 +83,62 @@ public class TrainDrivingPanel extends Screen {
                     ? LanguageSystem.translate("krt.train.ato") 
                     : LanguageSystem.translate("krt.train.manual");
             controlModeButton.setMessage(Text.literal("模式: " + newMode));
-        }).dimensions(x + 270, y + 100, 100, 30).build();
+        });
         addDrawableChild(controlModeButton);
 
         // 紧急制动按钮
-        emergencyBrakeButton = ButtonWidget.builder(Text.literal(LanguageSystem.translate("krt.train.emergency_brake")), button -> {
+        emergencyBrakeButton = new ButtonWidget(x + 280, y + 180, 100, 30, Text.literal(LanguageSystem.translate("krt.train.emergency_brake")), button -> {
             train.applyEmergencyBrake();
             LogSystem.trainLog(train.getTrainId(), "紧急制动已触发");
-        }).dimensions(x + 270, y + 160, 100, 30).build();
+        });
         addDrawableChild(emergencyBrakeButton);
         emergencyBrakeButton.active = !train.isEmergencyBraking();
 
+        // 释放紧急制动按钮
+        releaseBrakeButton = new ButtonWidget(x + 280, y + 150, 100, 30, Text.literal(LanguageSystem.translate("krt.train.release_brake")), button -> {
+            train.releaseEmergencyBrake();
+            LogSystem.trainLog(train.getTrainId(), "紧急制动已解除");
+        });
+        addDrawableChild(releaseBrakeButton);
+        releaseBrakeButton.active = train.isEmergencyBraking();
+
+        // 前灯按钮
+        headlightButton = new ButtonWidget(x + 50, y + 110, 100, 30, Text.literal(LanguageSystem.translate("krt.train.headlights") + (headlightsOn ? " ON" : " OFF")), button -> {
+            headlightsOn = !headlightsOn;
+            headlightButton.setMessage(Text.literal(LanguageSystem.translate("krt.train.headlights") + (headlightsOn ? " ON" : " OFF")));
+            // 这里可以添加前灯控制逻辑
+        });
+        addDrawableChild(headlightButton);
+
+        // 喇叭按钮
+        hornButton = new ButtonWidget(x + 160, y + 220, 100, 30, Text.literal(LanguageSystem.translate("krt.train.horn")), button -> {
+            if (!hasHornCooldown) {
+                // 播放喇叭声音
+                if (!client.world.isClient) {
+                    // 在服务端播放声音的逻辑
+                }
+                // 客户端播放声音
+                BlockPos pos = train.getBlockPos();
+                client.world.playSound(pos.getX(), pos.getY(), pos.getZ(), KRTMod.TRAIN_MOVING_SOUND, SoundCategory.NEUTRAL, 1.0F, 0.5F, false);
+                
+                hasHornCooldown = true;
+                // 设置冷却时间
+                client.execute(() -> {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    hasHornCooldown = false;
+                });
+            }
+        });
+        addDrawableChild(hornButton);
+
         // 关闭按钮
-        closeButton = ButtonWidget.builder(Text.literal(LanguageSystem.translate("krt.gui.close")), button -> {
+        closeButton = new ButtonWidget(x + WIDTH - 100, y + 20, 80, 20, Text.literal(LanguageSystem.translate("krt.gui.close")), button -> {
             client.setScreen(null);
-        }).dimensions(x + WIDTH - 100, y + 20, 80, 20).build();
+        });
         addDrawableChild(closeButton);
     }
 
@@ -108,32 +154,32 @@ public class TrainDrivingPanel extends Screen {
         drawCenteredText(matrices, textRenderer, title, width / 2, y + 10, 0xFFFFFF);
 
         // 绘制列车信息
-        drawTextWithShadow(matrices, textRenderer, "列车ID: " + train.getTrainId(), x + 20, y + 50, 0xFFFFFF);
-        drawTextWithShadow(matrices, textRenderer, "当前速度: " + String.format("%.1f", train.getCurrentSpeed()) + " km/h", x + 20, y + 70, 0xFFFFFF);
-        drawTextWithShadow(matrices, textRenderer, "目标速度: " + String.format("%.1f", train.getControlSystem().getMaxSpeed()) + " km/h", x + 20, y + 90, 0xFFFFFF);
-        drawTextWithShadow(matrices, textRenderer, "当前档位: " + getGearDisplayName(), x + 20, y + 110, 0xFFFFFF);
-        drawTextWithShadow(matrices, textRenderer, "健康值: " + train.getHealth() + "%", x + 20, y + 130, 0xFFFFFF);
+        drawTextWithShadow(matrices, textRenderer, Text.literal("列车ID: " + train.getTrainId()), x + 20, y + 50, 0xFFFFFF);
+        drawTextWithShadow(matrices, textRenderer, Text.literal("当前速度: " + String.format("%.1f", train.getCurrentSpeed()) + " km/h"), x + 20, y + 70, 0xFFFFFF);
+        drawTextWithShadow(matrices, textRenderer, Text.literal("目标速度: " + String.format("%.1f", train.getControlSystem().getMaxSpeed()) + " km/h"), x + 20, y + 90, 0xFFFFFF);
+        drawTextWithShadow(matrices, textRenderer, Text.literal("当前档位: " + getGearDisplayName()), x + 20, y + 110, 0xFFFFFF);
+        drawTextWithShadow(matrices, textRenderer, Text.literal("健康值: " + train.getHealth() + "%"), x + 20, y + 130, 0xFFFFFF);
 
         // 绘制速度表
         drawSpeedometer(matrices, x + 150, y + 50);
 
         // 绘制下一站信息
         if (train.getNextStation() != null) {
-            drawTextWithShadow(matrices, textRenderer, "下一站: " + train.getNextStation(), x + 20, y + 150, 0xFFFFFF);
+            drawTextWithShadow(matrices, textRenderer, Text.literal("下一站: " + train.getNextStation()), x + 20, y + 150, 0xFFFFFF);
         }
 
         // 绘制终点站信息
         if (train.getDestination() != null) {
-            drawTextWithShadow(matrices, textRenderer, "终点站: " + train.getDestination(), x + 20, y + 170, 0xFFFFFF);
+            drawTextWithShadow(matrices, textRenderer, Text.literal("终点站: " + train.getDestination()), x + 20, y + 170, 0xFFFFFF);
         }
 
         // 绘制紧急制动状态
         if (train.isEmergencyBraking()) {
-            drawTextWithShadow(matrices, textRenderer, "紧急制动已触发！", x + 20, y + 190, 0xFF0000);
+            drawTextWithShadow(matrices, textRenderer, Text.literal("紧急制动已触发！"), x + 20, y + 190, 0xFF0000);
         }
 
         // 绘制操作提示
-        drawTextWithShadow(matrices, textRenderer, "操作提示: W-前进, S-后退, A-切换档位", x + 20, y + HEIGHT - 30, 0xA0A0A0);
+        drawTextWithShadow(matrices, textRenderer, Text.literal("操作提示: W-前进, S-后退, A-切换档位"), x + 20, y + HEIGHT - 30, 0xA0A0A0);
     }
 
     // 绘制速度表
@@ -264,5 +310,43 @@ public class TrainDrivingPanel extends Screen {
     @Override
     public boolean shouldPause() {
         return false;
+    }
+    
+    // 绘制线条
+    private void drawLine(MatrixStack matrices, int x1, int y1, int x2, int y2, int color) {
+        // 简化版线条绘制，使用填充像素的方式
+        // 确保起点坐标小于终点坐标
+        if (x1 > x2) {
+            int temp = x1;
+            x1 = x2;
+            x2 = temp;
+            temp = y1;
+            y1 = y2;
+            y2 = temp;
+        }
+        
+        int dx = x2 - x1;
+        int dy = y2 - y1;
+        
+        // 处理水平线
+        if (dy == 0) {
+            fill(matrices, x1, y1, x2 + 1, y1 + 1, color);
+            return;
+        }
+        
+        // 处理垂直线
+        if (dx == 0) {
+            if (y1 > y2) {
+                int temp = y1;
+                y1 = y2;
+                y2 = temp;
+            }
+            fill(matrices, x1, y1, x1 + 1, y2 + 1, color);
+            return;
+        }
+        
+        // 处理斜线（简化版，只绘制起点到终点的直线）
+        fill(matrices, x1, y1, x1 + 1, y1 + 1, color);
+        fill(matrices, x2, y2, x2 + 1, y2 + 1, color);
     }
 }

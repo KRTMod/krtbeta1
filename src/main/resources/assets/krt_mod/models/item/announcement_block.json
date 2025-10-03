@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "krt_mod:item/announcement_block.png"
+  }
+}

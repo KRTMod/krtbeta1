@@ -1,0 +1,11 @@
+<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+  <rect width="16" height="16" fill="#333333"/>
+  <rect x="2" y="3" width="12" height="10" fill="#000000"/>
+  <rect x="1" y="2" width="14" height="12" fill="#555555"/>
+  <!-- 计时器边框 -->
+  <rect x="3" y="4" width="10" height="8" fill="#444444"/>
+  <!-- 显示区域 -->
+  <rect x="4" y="5" width="8" height="6" fill="#000000"/>
+  <!-- 示例时间显示 - 实际时间由渲染器动态生成 -->
+  <text x="6" y="9" font-family="Arial" font-size="3" fill="#00FF00">02:45</text>
+</svg>

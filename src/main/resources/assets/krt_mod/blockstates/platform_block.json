@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "krt_mod:block/platform_block"
+    }
+  }
+}

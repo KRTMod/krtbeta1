@@ -1,0 +1,15 @@
+<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+  <!-- 端门计时器顶部纹理 -->
+  <rect width="16" height="16" fill="#111111"/>
+  <!-- 顶部的细微纹理 -->
+  <rect x="0" y="0" width="16" height="1" fill="#0a0a0a"/>
+  <rect x="0" y="15" width="16" height="1" fill="#0a0a0a"/>
+  <rect x="0" y="0" width="1" height="16" fill="#0a0a0a"/>
+  <rect x="15" y="0" width="1" height="16" fill="#0a0a0a"/>
+  <!-- 顶部的散热孔设计 -->
+  <rect x="4" y="3" width="8" height="1" fill="#0a0a0a"/>
+  <rect x="4" y="5" width="8" height="1" fill="#0a0a0a"/>
+  <rect x="4" y="7" width="8" height="1" fill="#0a0a0a"/>
+  <rect x="4" y="9" width="8" height="1" fill="#0a0a0a"/>
+  <rect x="4" y="11" width="8" height="1" fill="#0a0a0a"/>
+</svg>

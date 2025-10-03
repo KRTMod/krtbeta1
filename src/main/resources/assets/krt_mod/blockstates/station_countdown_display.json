@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "facing": {
+      "north": {
+        "model": "krt_mod:block/station_countdown_display"
+      },
+      "east": {
+        "model": "krt_mod:block/station_countdown_display",
+        "y": 90
+      },
+      "south": {
+        "model": "krt_mod:block/station_countdown_display",
+        "y": 180
+      },
+      "west": {
+        "model": "krt_mod:block/station_countdown_display",
+        "y": 270
+      }
+    }
+  }
+}

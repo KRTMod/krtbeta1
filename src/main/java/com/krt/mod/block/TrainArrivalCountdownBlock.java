@@ -20,6 +20,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import com.krt.mod.system.LanguageSystem;
 import com.krt.mod.system.LogSystem;
+import com.krt.mod.system.StationCountdownDisplayLogic;
 import com.krt.mod.system.TrainDisplaySystem;
 
 import java.util.Random;
@@ -131,20 +132,22 @@ public class TrainArrivalCountdownBlock extends Block implements TrainDisplaySys
 
     /**
      * 获取当前显示的倒计时文本
+     * 集成StationCountdownDisplayLogic来处理显示逻辑
      */
     public String getCountdownText(World world, BlockPos pos) {
-        // 在实际实现中，这里应该从TrainDisplaySystem获取倒计时信息
-        // 这里简化处理，返回一个示例文本
-        return "02:30";
+        // 使用StationCountdownDisplayLogic获取显示文本
+        boolean showDetails = shouldShowDetails(world, pos);
+        return StationCountdownDisplayLogic.getInstance().getDisplayText(world, pos, showDetails);
     }
 
     /**
      * 获取当前显示的列车信息
+     * 集成StationCountdownDisplayLogic来处理显示逻辑
      */
     public String getTrainInfoText(World world, BlockPos pos) {
-        // 在实际实现中，这里应该从TrainDisplaySystem获取列车信息
-        // 这里简化处理，返回一个示例文本
-        return "K1线 终点站: 大学城南站";
+        // 使用StationCountdownDisplayLogic获取显示文本
+        boolean showDetails = shouldShowDetails(world, pos);
+        return StationCountdownDisplayLogic.getInstance().getDisplayText(world, pos, showDetails);
     }
 
     /**

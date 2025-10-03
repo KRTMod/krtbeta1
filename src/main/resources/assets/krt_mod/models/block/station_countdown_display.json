@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "front": "krt_mod:block/station_countdown_display.png",
+    "side": "krt_mod:block/station_countdown_display_side.png",
+    "top": "krt_mod:block/station_countdown_display_top.png"
+  }
+}

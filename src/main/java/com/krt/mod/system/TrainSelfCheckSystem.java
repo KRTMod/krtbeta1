@@ -14,7 +14,7 @@ public class TrainSelfCheckSystem {
     // 系统组件状态
     private Map<SystemComponent, ComponentStatus> componentStatuses = new HashMap<>();
     // 自检间隔（刻）
-    private static final int CHECK_INTERVAL = 20 * 60; // 每分钟检查一次
+
     private int checkTimer = 0;
 
     public TrainSelfCheckSystem(TrainEntity train) {
@@ -25,7 +25,16 @@ public class TrainSelfCheckSystem {
         }
     }
 
+    private long lastCheckTick = 0;
+    private static final long CHECK_INTERVAL = 5; // 每5tick检查一次
+    
     public void tick() {
+        // 优化更新频率，降低自检系统的tick更新频率
+        long currentTick = net.minecraft.util.Util.getMeasuringTimeMs();
+        if (currentTick - lastCheckTick < CHECK_INTERVAL * 50) { // Minecraft tick约为50ms
+            return;
+        }
+        lastCheckTick = currentTick;
         checkTimer++;
         if (checkTimer >= CHECK_INTERVAL) {
             checkTimer = 0;

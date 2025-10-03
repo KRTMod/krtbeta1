@@ -1,0 +1,6 @@
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <rect width="16" height="16" fill="#333333"/>
+  <rect x="2" y="3" width="12" height="10" fill="#000000"/>
+  <text x="5" y="8" font-family="Arial" font-size="3" fill="#00FF00">10:30</text>
+  <text x="5" y="12" font-family="Arial" font-size="2" fill="#00FF00">下一班</text>
+</svg>

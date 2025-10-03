@@ -1,0 +1,25 @@
+{
+  "itemGroup.krt_track_control_group": "Track & Control",
+  "itemGroup.krt_station_building_group": "Station Building",
+  
+  "block.krt.track": "Track",
+  "block.krt.switch_track": "Switch Track",
+  "block.krt.announcement_block": "Announcement Block",
+  "block.krt.signal_block": "Signal Block",
+  "block.krt.atp_block": "ATP Signal Block",
+  "block.krt.platform_door": "Platform Door",
+  "block.krt.platform_block": "Platform Block",
+  "block.krt.station_countdown_display": "Station Countdown Display",
+  "block.krt.small_tv": "Small TV",
+  
+  "item.krt.line_setting_panel": "Line Setting Panel",
+  "item.krt.line_setting_panel.tooltip": "Right-click to open line settings",
+  "item.krt.train_control_panel": "Train Control Panel",
+  "item.krt.train_control_panel.tooltip": "Right-click to control trains",
+  "item.krt.operation_manual": "Operation Manual",
+  "item.krt.operation_manual.tooltip": "Right-click to read operating instructions",
+  "item.krt.shortcut_manual": "Shortcut Manual",
+  "item.krt.shortcut_manual.tooltip": "Right-click to view keyboard shortcuts",
+  "item.krt.door_key": "Door Key",
+  "item.krt.driver_key": "Driver Key"
+}

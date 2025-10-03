@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <!-- 资源包图标背景 -->
+  <rect x="0" y="0" width="64" height="64" fill="#222222"/>
+  
+  <!-- 铁路轨道图案 -->
+  <path d="M 16 32 L 48 32" stroke="#AAAAAA" stroke-width="4"/>
+  <path d="M 16 30 L 48 30" stroke="#DDDDDD" stroke-width="1"/>
+  <path d="M 16 34 L 48 34" stroke="#DDDDDD" stroke-width="1"/>
+  
+  <!-- 火车头图案 -->
+  <rect x="48" y="28" width="8" height="8" fill="#AA0000"/>
+  <rect x="56" y="28" width="4" height="8" fill="#AA0000"/>
+  <circle cx="52" cy="36" r="2" fill="#333333"/>
+  <circle cx="58" cy="36" r="2" fill="#333333"/>
+  
+  <!-- KRT标识 -->
+  <text x="32" y="52" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">KRT</text>
+  <text x="32" y="62" font-family="Arial, sans-serif" font-size="6" fill="#AAAAAA" text-anchor="middle">铁路模组</text>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- 站台门纹理 -->
+  <rect x="0" y="0" width="16" height="16" fill="#333333"/>
+  
+  <!-- 门框 -->
+  <rect x="2" y="2" width="12" height="12" fill="#222222" stroke="#444444" stroke-width="1"/>
+  
+  <!-- 门面板 -->
+  <rect x="3" y="3" width="10" height="10" fill="#555555"/>
+  
+  <!-- 门把手和控制 -->
+  <rect x="11" y="8" width="1" height="3" fill="#AAAAAA"/>
+  <rect x="9" y="4" width="1" height="1" fill="#FF0000"/>
+  
+  <!-- 玻璃面板暗示 -->
+  <rect x="4" y="5" width="6" height="6" fill="#88AADD" opacity="0.3"/>
+  <line x1="4" y1="8" x2="10" y2="8" stroke="#6688CC" stroke-width="1" opacity="0.5"/>
+  <line x1="7" y1="5" x2="7" y2="11" stroke="#6688CC" stroke-width="1" opacity="0.5"/>
+</svg>

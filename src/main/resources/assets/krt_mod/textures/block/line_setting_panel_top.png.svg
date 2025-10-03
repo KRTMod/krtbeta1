@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- 线路设置面板顶部纹理 - 深灰色 -->
+  <rect width="16" height="16" fill="#404040"/>
+  <!-- 顶部的细微纹理 -->
+  <rect x="0" y="0" width="16" height="1" fill="#333333"/>
+  <rect x="0" y="15" width="16" height="1" fill="#333333"/>
+  <rect x="0" y="0" width="1" height="16" fill="#333333"/>
+  <rect x="15" y="0" width="1" height="16" fill="#333333"/>
+  <!-- 顶部的金属格栅 -->
+  <line x1="0" y1="4" x2="16" y2="4" stroke="#333333" stroke-width="1"/>
+  <line x1="0" y1="8" x2="16" y2="8" stroke="#333333" stroke-width="1"/>
+  <line x1="0" y1="12" x2="16" y2="12" stroke="#333333" stroke-width="1"/>
+</svg>

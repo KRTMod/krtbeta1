@@ -1,0 +1,42 @@
+{
+  "__comment": "This is a placeholder texture file for the train control panel",
+  "texture_width": 300,
+  "texture_height": 200,
+  "background_color": "#E0E0E0",
+  "border_color": "#404040",
+  "panel_areas": [
+    {
+      "x": 10,
+      "y": 10,
+      "width": 280,
+      "height": 180,
+      "color": "#FFFFFF"
+    },
+    {
+      "x": 20,
+      "y": 30,
+      "width": 150,
+      "height": 100,
+      "color": "#F0F0F0",
+      "label": "Train Information"
+    },
+    {
+      "x": 190,
+      "y": 30,
+      "width": 90,
+      "height": 90,
+      "color": "#F0F0F0",
+      "label": "Speedometer"
+    },
+    {
+      "x": 20,
+      "y": 140,
+      "width": 260,
+      "height": 40,
+      "color": "#F0F0F0",
+      "label": "Controls"
+    }
+  ],
+  "created_with": "Trae AI Assistant",
+  "note": "Replace this with an actual texture file in your development environment"
+}

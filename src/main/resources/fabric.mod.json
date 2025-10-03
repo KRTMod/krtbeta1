@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "krtbeta",
+  "id": "krt_mod",
   "version": "1.0.0",
   "name": "KRT Beta",
-  "description": "A simple Fabric mod",
+  "description": "昆明轨道交通模组 - 为Minecraft添加轨道交通系统",
   "authors": ["Your Name"],
   "contact": {
     "homepage": "https://example.com"
@@ -12,12 +12,16 @@
   "icon": "assets/krtbeta/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": ["com.krtbeta.KRTBetaMod"]
+    "main": ["com.krt.mod.KRTMod"],
+    "client": ["com.krt.mod.KRTModClient"],
+    "modmenu": ["com.krt.mod.compat.ModMenuIntegration"]
   },
   "depends": {
     "fabricloader": ">=0.14.21",
     "minecraft": "~1.19.2",
     "java": ">=17",
-    "fabric-api": "*"
+    "fabric-api": "*",
+    "fabric-key-binding-api-v1": "*",
+    "modmenu": ">=4.0.0"
   }
 }

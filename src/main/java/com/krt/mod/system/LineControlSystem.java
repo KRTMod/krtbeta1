@@ -8,6 +8,7 @@ import com.krt.mod.KRTMod;
 import com.krt.mod.block.TrackBlock;
 import com.krt.mod.block.SwitchTrackBlock;
 import com.krt.mod.block.SignalBlock;
+import com.krt.mod.system.TimetableSystem;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -30,6 +31,8 @@ public class LineControlSystem {
     public void createLine(String lineId, String lineName) {
         if (!lines.containsKey(lineId)) {
             lines.put(lineId, new LineInfo(lineId, lineName));
+            // 为新线路创建对应的时刻表
+            TimetableSystem.getInstance(world).createTimetable(lineId);
             KRTMod.LOGGER.info("创建新线路: {}", lineName);
         }
     }
@@ -268,6 +271,18 @@ public class LineControlSystem {
 
         public void setMaxSpeed(double maxSpeed) {
             this.maxSpeed = maxSpeed;
+        }
+        
+        // 获取根据时刻表调整后的运营速度
+        public double getAdjustedMaxSpeed(World world) {
+            TimetableSystem timetableSystem = TimetableSystem.getInstance(world);
+            return timetableSystem.getAdjustedSpeed(lineId, maxSpeed);
+        }
+        
+        // 获取当前时段的停站时间（秒）
+        public int getCurrentDwellTime(World world) {
+            TimetableSystem timetableSystem = TimetableSystem.getInstance(world);
+            return timetableSystem.getCurrentDwellTime(lineId);
         }
     }
 

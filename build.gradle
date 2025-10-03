@@ -3,20 +3,33 @@ plugins {
     id "maven-publish"
 }
 
-version = "1.0.0"
-group = "com.krt"
-archivesBaseName = "krt"
+version = mod_version
+group = maven_group
+archivesBaseName = archives_base_name
 
 repositories {
     mavenCentral()
+    maven {
+        name = "TerraformersMC"
+        url = "https://maven.terraformersmc.com/releases/"
+    }
 }
 
+// 指定Java版本，与Minecraft 1.19.2兼容
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+defaultTasks 'clean', 'build'
+
 dependencies {
-    minecraft "com.mojang:minecraft:1.19.2"
-    mappings "net.fabricmc:yarn:1.19.2+build.28:v2"
-    modImplementation "net.fabricmc:fabric-loader:0.14.21"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:0.58.6+1.19.2"
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings "net.fabricmc:yarn:${yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.77.0+${minecraft_version}"
     modImplementation "com.google.code.gson:gson:2.10.1"
+    modImplementation "com.terraformersmc:modmenu:4.1.1"
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -39,4 +52,25 @@ publishing {
     }
 }
 
-loom {}
+loom {
+    runs {
+        client {
+            runDir = "run"
+        }
+        server {
+            runDir = "run"
+        }
+        data {
+            runDir = "run"
+        }
+    }
+}
+
+// 确保构建时使用正确的Java版本
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.test {
+    useJUnitPlatform()
+}

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- 车站倒计时显示屏纹理 -->
+  <rect x="0" y="0" width="16" height="16" fill="#222222"/>
+  
+  <!-- 显示屏边框 -->
+  <rect x="2" y="2" width="12" height="12" fill="#111111" stroke="#444444" stroke-width="1"/>
+  
+  <!-- 显示屏区域 -->
+  <rect x="3" y="3" width="10" height="8" fill="#0A0A0A" stroke="#555555" stroke-width="0.5"/>
+  
+  <!-- 倒计时显示内容 -->
+  <text x="8" y="8" font-family="monospace" font-size="4" fill="#00FF00" text-anchor="middle">3:21</text>
+  
+  <!-- 按钮和控制区 -->
+  <rect x="4" y="12" width="2" height="1" fill="#555555"/>
+  <rect x="7" y="12" width="2" height="1" fill="#555555"/>
+  <rect x="10" y="12" width="2" height="1" fill="#555555"/>
+</svg>

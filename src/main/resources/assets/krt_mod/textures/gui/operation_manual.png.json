@@ -1,0 +1,34 @@
+{
+  "__comment": "This is a placeholder texture file for the operation manual",
+  "texture_width": 384,
+  "texture_height": 256,
+  "background_color": "#E0E0E0",
+  "border_color": "#404040",
+  "panel_areas": [
+    {
+      "x": 10,
+      "y": 10,
+      "width": 364,
+      "height": 236,
+      "color": "#FFFFFF"
+    },
+    {
+      "x": 20,
+      "y": 30,
+      "width": 344,
+      "height": 200,
+      "color": "#F8F8F8",
+      "label": "Manual Content"
+    },
+    {
+      "x": 354,
+      "y": 20,
+      "width": 16,
+      "height": 216,
+      "color": "#EEEEEE",
+      "label": "Scrollbar Area"
+    }
+  ],
+  "created_with": "Trae AI Assistant",
+  "note": "Replace this with an actual texture file in your development environment"
+}

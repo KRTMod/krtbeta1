@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- 背景 -->
+  <rect width="16" height="16" fill="#8B4513"/>
+  <!-- 书籍封面 -->
+  <rect x="1" y="1" width="14" height="14" rx="1" ry="1" fill="#A0522D"/>
+  <!-- 书籍标题区域 -->
+  <rect x="2" y="2" width="12" height="3" fill="#CD853F"/>
+  <!-- 书籍内容模拟 -->
+  <line x1="2" y1="6" x2="14" y2="6" stroke="#DEB887" stroke-width="0.5"/>
+  <line x1="2" y1="8" x2="14" y2="8" stroke="#DEB887" stroke-width="0.5"/>
+  <line x1="2" y1="10" x2="14" y2="10" stroke="#DEB887" stroke-width="0.5"/>
+  <line x1="2" y1="12" x2="14" y2="12" stroke="#DEB887" stroke-width="0.5"/>
+  <!-- 书籍图标 -->
+  <path d="M6 3 L10 3 L10 5 L6 5 Z" fill="none" stroke="#DEB887" stroke-width="0.5"/>
+  <path d="M8 3 L8 5" stroke="#DEB887" stroke-width="0.5"/>
+  <path d="M6 4 L10 4" stroke="#DEB887" stroke-width="0.5"/>
+  <!-- 侧边装订线 -->
+  <path d="M1.5 1 L1.5 15" stroke="#6B3E26" stroke-width="1"/>
+</svg>

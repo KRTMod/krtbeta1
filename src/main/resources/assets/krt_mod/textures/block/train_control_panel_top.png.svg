@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- 列车操控面板顶部纹理 - 深蓝灰色 -->
+  <rect width="16" height="16" fill="#333344"/>
+  <!-- 顶部的细微纹理 -->
+  <rect x="0" y="0" width="16" height="1" fill="#222233"/>
+  <rect x="0" y="15" width="16" height="1" fill="#222233"/>
+  <rect x="0" y="0" width="1" height="16" fill="#222233"/>
+  <rect x="15" y="0" width="1" height="16" fill="#222233"/>
+  <!-- 顶部的连接端口 -->
+  <rect x="5" y="5" width="6" height="6" fill="#222233"/>
+  <rect x="6" y="6" width="4" height="4" fill="#444455"/>
+  <line x1="0" y1="8" x2="16" y2="8" stroke="#222233" stroke-width="1"/>
+  <line x1="8" y1="0" x2="8" y2="16" stroke="#222233" stroke-width="1"/>
+</svg>

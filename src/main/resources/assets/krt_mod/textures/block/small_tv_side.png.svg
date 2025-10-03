@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- 小电视侧边纹理 - 深灰色 -->
+  <rect width="16" height="16" fill="#333333"/>
+  <!-- 侧边的细微纹理 -->
+  <rect x="0" y="0" width="1" height="16" fill="#2a2a2a"/>
+  <rect x="15" y="0" width="1" height="16" fill="#2a2a2a"/>
+  <rect x="0" y="0" width="16" height="1" fill="#2a2a2a"/>
+  <rect x="0" y="15" width="16" height="1" fill="#2a2a2a"/>
+  <!-- 侧边的细节 -->
+  <rect x="2" y="3" width="12" height="2" fill="#2a2a2a"/>
+  <rect x="2" y="7" width="12" height="2" fill="#2a2a2a"/>
+  <rect x="2" y="11" width="12" height="2" fill="#2a2a2a"/>
+</svg>

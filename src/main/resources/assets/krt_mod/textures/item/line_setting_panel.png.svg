@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- 背景 -->
+  <rect width="16" height="16" fill="#2c3e50"/>
+  <!-- 面板边框 -->
+  <rect x="1" y="1" width="14" height="14" fill="#34495e" stroke="#ecf0f1" stroke-width="0.5"/>
+  <!-- 中央控制面板图案 -->
+  <rect x="2" y="3" width="12" height="10" fill="#2c3e50" stroke="#bdc3c7" stroke-width="0.5"/>
+  
+  <!-- 地铁线路图 - 红色主线 -->
+  <path d="M3 5 L13 5" stroke="#e74c3c" stroke-width="1"/>
+  <!-- 蓝色支线 -->
+  <path d="M5 3 L5 9 L11 9" stroke="#3498db" stroke-width="0.75"/>
+  <!-- 绿色环线 -->
+  <path d="M3 11 L6 11 L8 12 L10 11 L13 11" stroke="#2ecc71" stroke-width="0.75"/>
+  
+  <!-- 站点标记 -->
+  <!-- 红色线站点 -->
+  <circle cx="3" cy="5" r="0.75" fill="#e74c3c"/>
+  <circle cx="6" cy="5" r="0.75" fill="#e74c3c"/>
+  <circle cx="9" cy="5" r="0.75" fill="#e74c3c"/>
+  <circle cx="13" cy="5" r="0.75" fill="#e74c3c"/>
+  
+  <!-- 蓝色线站点 -->
+  <circle cx="5" cy="3" r="0.75" fill="#3498db"/>
+  <circle cx="5" cy="7" r="0.75" fill="#3498db"/>
+  <circle cx="5" cy="9" r="0.75" fill="#3498db"/>
+  <circle cx="8" cy="9" r="0.75" fill="#3498db"/>
+  <circle cx="11" cy="9" r="0.75" fill="#3498db"/>
+  
+  <!-- 绿色线站点 -->
+  <circle cx="3" cy="11" r="0.75" fill="#2ecc71"/>
+  <circle cx="6" cy="11" r="0.75" fill="#2ecc71"/>
+  <circle cx="8" cy="12" r="0.75" fill="#2ecc71"/>
+  <circle cx="10" cy="11" r="0.75" fill="#2ecc71"/>
+  <circle cx="13" cy="11" r="0.75" fill="#2ecc71"/>
+  
+  <!-- 换乘站标记（紫色） -->
+  <circle cx="6" cy="5" r="1" fill="none" stroke="#9b59b6" stroke-width="0.5"/>
+  <circle cx="5" cy="9" r="1" fill="none" stroke="#9b59b6" stroke-width="0.5"/>
+  
+  <!-- 控制面板按钮 -->
+  <rect x="11" y="12" width="2" height="1" fill="#f39c12"/>
+</svg>

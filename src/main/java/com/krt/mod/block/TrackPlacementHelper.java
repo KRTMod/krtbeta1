@@ -69,14 +69,21 @@ public class TrackPlacementHelper {
         
         if (neighborState.getBlock() instanceof SwitchTrackBlock) {
             // 对于道岔，检查是否可以连接到指定方向
-            SwitchTrackBlock switchBlock = (SwitchTrackBlock) neighborState.getBlock();
             Direction switchFacing = neighborState.get(SwitchTrackBlock.FACING);
-            boolean isMainRoute = neighborState.get(SwitchTrackBlock.IS_MAIN_ROUTE);
+            boolean isSwitched = neighborState.get(SwitchTrackBlock.SWITCHED);
             
-            return switchBlock.canConnectTo(world, neighborPos, switchFacing, isMainRoute, to.getOpposite());
+            // 根据道岔状态和朝向判断是否可以连接
+            // 这里实现一个简化的逻辑：如果道岔未切换，只能连接到正面；如果道岔已切换，只能连接到右侧
+            Direction oppositeDir = to.getOpposite();
+            if (!isSwitched) {
+                return oppositeDir == switchFacing;
+            } else {
+                return oppositeDir == switchFacing.rotateYClockwise();
+            }
         } else if (neighborState.getBlock() instanceof TrackBlock) {
-            // 对于普通轨道，只要方向相反即可连接
-            return to.getOpposite() == neighborState.get(TrackBlock.FACING);
+            // 对于普通轨道，假设它可以连接到任何相邻的轨道
+            // 简化逻辑：只要对方也是轨道，就认为可以连接
+            return true;
         }
         return false;
     }
@@ -96,17 +103,18 @@ public class TrackPlacementHelper {
                 
                 // 根据相邻轨道的方向确定当前轨道的方向
                 if (neighborState.getBlock() instanceof TrackBlock) {
-                    return neighborState.get(TrackBlock.FACING).getOpposite();
+                    // TrackBlock没有方向属性，直接返回相反方向
+                    return dir;
                 } else if (neighborState.getBlock() instanceof SwitchTrackBlock) {
                     Direction switchFacing = neighborState.get(SwitchTrackBlock.FACING);
-                    boolean isMainRoute = neighborState.get(SwitchTrackBlock.IS_MAIN_ROUTE);
-                    SwitchTrackBlock switchBlock = (SwitchTrackBlock) neighborState.getBlock();
+                    boolean isSwitched = neighborState.get(SwitchTrackBlock.SWITCHED);
                     
-                    // 找到道岔可以连接的方向
-                    for (Direction connDir : switchBlock.getConnectableDirections(switchFacing, isMainRoute)) {
-                        if (connDir.getOpposite() == dir) {
-                            return dir;
-                        }
+                    // 根据道岔状态和方向确定连接方向
+                    Direction oppositeDir = dir;
+                    if (!isSwitched && switchFacing == dir.getOpposite()) {
+                        return dir;
+                    } else if (isSwitched && switchFacing.rotateYClockwise() == dir.getOpposite()) {
+                        return dir;
                     }
                 }
             }

@@ -1,0 +1,77 @@
+# Dependencies
+/.gradle
+/.idea
+/build
+/out
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Build outputs
+classes/
+*.class
+
+# Testing
+/coverage
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode/
+*.swp
+*.swo
+*~
+
+# Minecraft specific
+run/
+
+# Gradle wrapper
+!.gradle/wrapper/gradle-wrapper.jar
+
+# Build tools
+/buildSrc
+/.gradle
+/build
+
+# JVM
+*.class
+*.log
+
+# Package manager
+/.pnpm-debug.log*
+/yarn-debug.log*
+/yarn-error.log*
+/npm-debug.log*
+
+# Misc
+*.orig
+*.rej
+
+# Keep the README.md and other important files
+!README.md

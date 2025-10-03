@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- ATP信号方块纹理 -->
+  <rect x="0" y="0" width="16" height="16" fill="#222222"/>
+  
+  <!-- ATP设备外壳 -->
+  <rect x="3" y="3" width="10" height="10" fill="#1A3A5A" stroke="#2A4A6A" stroke-width="1"/>
+  
+  <!-- 电子控制面板 -->
+  <rect x="4" y="4" width="8" height="8" fill="#0A1A2A"/>
+  
+  <!-- 指示灯 -->
+  <circle cx="6" cy="6" r="0.8" fill="#009900"/>
+  <circle cx="10" cy="6" r="0.8" fill="#009900"/>
+  <circle cx="6" cy="10" r="0.8" fill="#990000"/>
+  <circle cx="10" cy="10" r="0.8" fill="#009900"/>
+  
+  <!-- 连接线 -->
+  <line x1="4" y1="8" x2="12" y2="8" stroke="#2A4A6A" stroke-width="1"/>
+  <line x1="8" y1="4" x2="8" y2="12" stroke="#2A4A6A" stroke-width="1"/>
+</svg>

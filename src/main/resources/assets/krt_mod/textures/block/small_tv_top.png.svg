@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- 小电视顶部纹理 - 深灰色 -->
+  <rect width="16" height="16" fill="#333333"/>
+  <!-- 顶部的细微纹理 -->
+  <rect x="0" y="0" width="1" height="16" fill="#2a2a2a"/>
+  <rect x="15" y="0" width="1" height="16" fill="#2a2a2a"/>
+  <rect x="0" y="0" width="16" height="1" fill="#2a2a2a"/>
+  <rect x="0" y="15" width="16" height="1" fill="#2a2a2a"/>
+  <!-- 顶部的细节 -->
+  <circle cx="8" cy="8" r="4" fill="#2a2a2a"/>
+  <circle cx="8" cy="8" r="2" fill="#444444"/>
+  <line x1="1" y1="1" x2="15" y2="15" stroke="#2a2a2a" stroke-width="1"/>
+  <line x1="15" y1="1" x2="1" y2="15" stroke="#2a2a2a" stroke-width="1"/>
+</svg>

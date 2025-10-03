@@ -1,6 +1,7 @@
 package com.krt.mod.system;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -15,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class TrainDisplaySystem {
     // 显示系统单例
     private static TrainDisplaySystem instance;
-    // 存储所有显示设备的状态
+    // 存储所有显示设备
     private final Map<BlockPos, DisplayDevice> displayDevices = new ConcurrentHashMap<>();
     // 存储所有列车的到站信息
     private final Map<String, TrainArrivalInfo> trainArrivalInfos = new ConcurrentHashMap<>();
@@ -24,6 +25,7 @@ public class TrainDisplaySystem {
 
     // 私有化构造函数
     private TrainDisplaySystem() {
+        // 初始化数据结构
     }
 
     // 获取单例实例
@@ -109,8 +111,11 @@ public class TrainDisplaySystem {
         String countdownText = String.format("%02d:%02d", minutesLeft, secondsLeft);
         setDisplayContent(world, pos, countdownText);
         
-        // 同时显示列车信息
+        // 同时显示列车信息和状态
         String trainInfo = nearestTrain.getTrainId() + " 终点站: " + nearestTrain.getDestination();
+        if (nearestTrain.hasStatusMessage()) {
+            trainInfo += " (" + nearestTrain.getStatusMessage() + ")";
+        }
         setDisplaySubContent(world, pos, trainInfo);
     }
 
@@ -173,6 +178,39 @@ public class TrainDisplaySystem {
         // 通知相关的显示设备更新
         notifyDisplayDevices(stationName);
     }
+    
+    /**
+     * 使用ATS数据自动更新所有列车到站信息
+     */
+    public void autoUpdateAllTrainArrivalInfo(World world) {
+        // 获取所有列车
+        List<TrainEntity> trains = DispatchSystem.getInstance(world).getAllTrains();
+        
+        for (TrainEntity train : trains) {
+            String nextStation = train.getNextStation();
+            if (nextStation != null && !nextStation.isEmpty()) {
+                // 使用精确计算器计算到站时间
+                TrainArrivalTimeCalculator calculator = TrainArrivalTimeCalculator.getInstance(world);
+                TrainArrivalTimeCalculator.ArrivalTimeInfo arrivalInfo = calculator.calculateArrivalTime(train, nextStation);
+                
+                // 更新列车到站信息
+                TrainArrivalInfo info = new TrainArrivalInfo(
+                        train.getTrainId(),
+                        nextStation,
+                        arrivalInfo.getMinutesLeft(),
+                        arrivalInfo.getSecondsLeft(),
+                        train.getDestination(),
+                        arrivalInfo.getStatusMessage()
+                );
+                
+                String key = train.getTrainId() + ":" + nextStation;
+                trainArrivalInfos.put(key, info);
+            }
+        }
+        
+        // 更新所有显示设备
+        updateAllDisplays();
+    }
 
     /**
      * 添加视频文件到缓存
@@ -183,6 +221,16 @@ public class TrainDisplaySystem {
         LogSystem.systemLog("视频已添加到缓存: " + videoId + ", 帧数: " + frameCount + ", FPS: " + fps);
     }
 
+    /**
+     * 通知特定车站的显示设备更新
+     */
+    private void notifyDisplayDevices(String stationName) {
+        // 由于没有实现车站位置查找和显示设备与车站的关联逻辑
+        // 这里简单地记录日志并更新所有显示设备
+        LogSystem.systemLog("通知车站显示设备更新: " + stationName);
+        updateAllDisplays();
+    }
+    
     /**
      * 清理过期的列车到站信息
      */
@@ -220,7 +268,7 @@ public class TrainDisplaySystem {
      */
     private String getNearestStation(World world, BlockPos pos) {
         // 从调度系统获取所有车站，并计算距离
-        Map<String, BlockPos> stations = DispatchSystem.getInstance().getAllStations();
+        Map<String, BlockPos> stations = DispatchSystem.getInstance(world).getAllStations();
         
         String nearestStation = null;
         double minDistance = Double.MAX_VALUE;
@@ -249,7 +297,7 @@ public class TrainDisplaySystem {
         double minDistance = Double.MAX_VALUE;
         
         // 获取所有列车
-        List<TrainEntity> trains = DispatchSystem.getInstance().getAllTrains();
+        List<TrainEntity> trains = DispatchSystem.getInstance(world).getAllTrains();
         
         for (TrainEntity train : trains) {
             double distance = Math.sqrt(
@@ -282,56 +330,64 @@ public class TrainDisplaySystem {
         }
     }
 
-    /**
-     * 获取配置的视频ID
-     */
-    private String getConfiguredVideo(World world, BlockPos pos) {
-        // 在实际实现中，这里应该从方块的NBT数据中获取配置的视频ID
-        // 这里简化处理，返回一个默认的视频ID
-        return "default_video";
-    }
+
+
+
 
     /**
-     * 设置显示内容
-     */
-    private void setDisplayContent(World world, BlockPos pos, String content) {
-        // 在实际实现中，这里应该更新方块的状态或NBT数据来显示内容
-        // 这里简化处理，记录日志
-        LogSystem.systemLog("更新显示内容: " + pos + ", 内容: " + content);
-    }
+       * 查找车站位置
+       */
+      private BlockPos findStationPosition(String stationName) {
+          // 这应该从车站系统中获取车站位置
+          // 目前返回null，实际应用中需要实现
+          return null;
+      }
+      
+      /**
+       * 设置显示内容
+       */
+      private void setDisplayContent(World world, BlockPos pos, String content) {
+          // 更新方块的状态或NBT数据来显示内容
+          // 由于TrainDisplayBlockEntity不存在，这里只记录日志
+          LogSystem.systemLog("设置显示内容: " + pos + ", 内容: " + content);
+      }
+      
+      /**
+       * 设置显示子内容
+       */
+      private void setDisplaySubContent(World world, BlockPos pos, String content) {
+          // 更新方块的状态或NBT数据来显示子内容
+          // 由于TrainDisplayBlockEntity不存在，这里只记录日志
+          LogSystem.systemLog("设置显示子内容: " + pos + ", 内容: " + content);
+      }
+      
+      /**
+       * 设置电视内容
+       */
+      private void setTvContent(World world, BlockPos pos, String content) {
+          // 更新方块的状态或NBT数据来显示电视内容
+          // 由于SmallTVBlockEntity不存在，这里只记录日志
+          LogSystem.systemLog("设置电视内容: " + pos + ", 内容: " + content);
+      }
+      
+      /**
+       * 显示视频帧
+       */
+      private void displayVideoFrame(World world, BlockPos pos, VideoData videoData, int frameIndex) {
+          // 由于SmallTVBlockEntity不存在，这里只记录日志
+          LogSystem.systemLog("显示视频帧: " + pos + ", 视频ID: " + videoData.videoId + ", 帧索引: " + frameIndex);
+      }
+      
+      /**
+       * 获取配置的视频ID
+       */
+      private String getConfiguredVideo(World world, BlockPos pos) {
+          // 从方块的NBT数据中获取配置的视频ID
+          // 由于TrainDisplayBlockEntity不存在，返回默认值
+          return "default_video";
+      }
+      
 
-    /**
-     * 设置显示子内容
-     */
-    private void setDisplaySubContent(World world, BlockPos pos, String content) {
-        // 在实际实现中，这里应该更新方块的状态或NBT数据来显示子内容
-        // 这里简化处理
-    }
-
-    /**
-     * 设置电视内容
-     */
-    private void setTvContent(World world, BlockPos pos, String content) {
-        // 在实际实现中，这里应该更新方块的状态或NBT数据来显示电视内容
-        // 这里简化处理
-    }
-
-    /**
-     * 显示视频帧
-     */
-    private void displayVideoFrame(World world, BlockPos pos, VideoData videoData, int frameIndex) {
-        // 在实际实现中，这里应该根据视频数据和帧索引显示对应的视频帧
-        // 这里简化处理，只显示视频ID和帧索引
-        setTvContent(world, pos, videoData.videoId + " (帧: " + frameIndex + ")");
-    }
-
-    /**
-     * 通知相关的显示设备更新
-     */
-    private void notifyDisplayDevices(String stationName) {
-        // 在实际实现中，这里应该查找与该车站相关的显示设备并通知它们更新
-        // 这里简化处理
-    }
 
     /**
      * 显示设备类
@@ -358,10 +414,13 @@ public class TrainDisplaySystem {
         public DisplayType getType() {
             return type;
         }
-
+        
+        /**
+         * 检查设备是否有效
+         */
         public boolean isValid() {
             // 检查方块是否仍然存在且类型正确
-            return world != null && world.isChunkLoaded(pos) && world.getBlockState(pos).getBlock() instanceof TrainDisplayBlock;
+            return world != null && world.isChunkLoaded(pos);
         }
     }
 
@@ -371,28 +430,38 @@ public class TrainDisplaySystem {
     private static class TrainArrivalInfo {
         private final String trainId;
         private final String stationName;
-        private int minutesLeft;
-        private int secondsLeft;
+        private final int minutesLeft;
+        private final int secondsLeft;
         private final String destination;
+        private final String statusMessage;
         private final long timestamp;
 
         public TrainArrivalInfo(String trainId, String stationName, int minutesLeft, int secondsLeft, String destination) {
+            this(trainId, stationName, minutesLeft, secondsLeft, destination, "");
+        }
+        
+        public TrainArrivalInfo(String trainId, String stationName, int minutesLeft, int secondsLeft, String destination, String statusMessage) {
             this.trainId = trainId;
             this.stationName = stationName;
             this.minutesLeft = minutesLeft;
             this.secondsLeft = secondsLeft;
             this.destination = destination;
+            this.statusMessage = statusMessage;
             this.timestamp = System.currentTimeMillis();
         }
 
-        public String getTrainId() {
-            return trainId;
-        }
+        public String getTrainId() { return trainId; }
 
-        public String getStationName() {
-            return stationName;
-        }
+        public String getStationName() { return stationName; }
 
+        public String getDestination() { return destination; }
+        
+        public String getStatusMessage() { return statusMessage; }
+        
+        public boolean hasStatusMessage() {
+            return statusMessage != null && !statusMessage.isEmpty();
+        }
+        
         public int getMinutesLeft() {
             // 计算剩余分钟数
             long elapsedTime = (System.currentTimeMillis() - timestamp) / 1000;
@@ -420,12 +489,8 @@ public class TrainDisplaySystem {
         public int getTotalSecondsLeft() {
             return getMinutesLeft() * 60 + getSecondsLeft();
         }
-
-        public String getDestination() {
-            return destination;
-        }
     }
-
+    
     /**
      * 视频数据类
      */

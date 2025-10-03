@@ -75,7 +75,7 @@ public class ModPackageManager {
             // 创建示例包
             createExamplePackage();
         } catch (IOException e) {
-            LogSystem.errorLog("初始化追加包目录失败: " + e.getMessage());
+            LogSystem.error("初始化追加包目录失败: " + e.getMessage());
         }
     }
 
@@ -131,7 +131,7 @@ public class ModPackageManager {
                 LogSystem.systemLog("已创建示例追加包: " + examplePackageDir.getFileName());
             }
         } catch (IOException e) {
-            LogSystem.errorLog("创建示例追加包失败: " + e.getMessage());
+            LogSystem.error("创建示例追加包失败: " + e.getMessage());
         }
     }
 
@@ -146,7 +146,7 @@ public class ModPackageManager {
             // 然后加载存档特定的包
             loadPackagesFromDirectory(getWorldPackageDirectory());
         } catch (Exception e) {
-            LogSystem.errorLog("加载追加包失败: " + e.getMessage());
+            LogSystem.error("加载追加包失败: " + e.getMessage());
         }
     }
 
@@ -167,7 +167,7 @@ public class ModPackageManager {
                 }
             }
         } catch (Exception e) {
-            LogSystem.errorLog("从目录加载追加包失败: " + directory + ", 错误: " + e.getMessage());
+            LogSystem.error("从目录加载追加包失败: " + directory + ", 错误: " + e.getMessage());
         }
     }
 
@@ -179,7 +179,7 @@ public class ModPackageManager {
             // 检查包是否包含package.json文件
             Path packageJsonPath = packagePath.resolve("package.json");
             if (!Files.exists(packageJsonPath)) {
-                LogSystem.warningLog("追加包不包含package.json文件: " + packagePath.getFileName());
+                LogSystem.warning("追加包不包含package.json文件: " + packagePath.getFileName());
                 return false;
             }
             
@@ -191,7 +191,7 @@ public class ModPackageManager {
             
             // 验证包的基本信息
             if (!packageJson.has("id") || !packageJson.has("version") || !packageJson.has("name")) {
-                LogSystem.warningLog("追加包缺少必要信息: " + packagePath.getFileName());
+                LogSystem.warning("追加包缺少必要信息: " + packagePath.getFileName());
                 return false;
             }
             
@@ -199,7 +199,7 @@ public class ModPackageManager {
             
             // 检查包是否已经加载
             if (loadedPackages.containsKey(packageId)) {
-                LogSystem.warningLog("追加包ID重复，跳过加载: " + packageId);
+                LogSystem.warning("追加包ID重复，跳过加载: " + packageId);
                 return false;
             }
             
@@ -222,11 +222,11 @@ public class ModPackageManager {
                 LogSystem.systemLog("成功加载追加包: " + packageInfo.getName() + " (" + packageInfo.getId() + ", v" + packageInfo.getVersion() + ")");
                 return true;
             } else {
-                LogSystem.warningLog("加载追加包资源失败: " + packageId);
+                LogSystem.warning("加载追加包资源失败: " + packageId);
                 return false;
             }
         } catch (Exception e) {
-            LogSystem.errorLog("加载追加包失败: " + packagePath.getFileName() + ", 错误: " + e.getMessage());
+            LogSystem.error("加载追加包失败: " + packagePath.getFileName() + ", 错误: " + e.getMessage());
             return false;
         }
     }
@@ -258,7 +258,7 @@ public class ModPackageManager {
             
             return true;
         } catch (Exception e) {
-            LogSystem.errorLog("加载追加包资源失败: " + packageInfo.getName() + ", 错误: " + e.getMessage());
+            LogSystem.error("加载追加包资源失败: " + packageInfo.getName() + ", 错误: " + e.getMessage());
             return false;
         }
     }
@@ -281,7 +281,7 @@ public class ModPackageManager {
                 }
             }
         } catch (Exception e) {
-            LogSystem.errorLog("加载音频资源失败: " + e.getMessage());
+            LogSystem.error("加载音频资源失败: " + e.getMessage());
         }
     }
 
@@ -303,7 +303,7 @@ public class ModPackageManager {
                 }
             }
         } catch (Exception e) {
-            LogSystem.errorLog("加载纹理资源失败: " + e.getMessage());
+            LogSystem.error("加载纹理资源失败: " + e.getMessage());
         }
     }
 
@@ -325,7 +325,7 @@ public class ModPackageManager {
                 }
             }
         } catch (Exception e) {
-            LogSystem.errorLog("加载视频资源失败: " + e.getMessage());
+            LogSystem.error("加载视频资源失败: " + e.getMessage());
         }
     }
 
@@ -347,7 +347,7 @@ public class ModPackageManager {
                 }
             }
         } catch (Exception e) {
-            LogSystem.errorLog("加载语言资源失败: " + e.getMessage());
+            LogSystem.error("加载语言资源失败: " + e.getMessage());
         }
     }
 
@@ -369,7 +369,7 @@ public class ModPackageManager {
                 }
             }
         } catch (Exception e) {
-            LogSystem.errorLog("加载模型资源失败: " + e.getMessage());
+            LogSystem.error("加载模型资源失败: " + e.getMessage());
         }
     }
 
@@ -388,7 +388,7 @@ public class ModPackageManager {
                 LogSystem.systemLog("加载包配置: " + packageInfo.getId());
             }
         } catch (Exception e) {
-            LogSystem.errorLog("加载包配置失败: " + packageInfo.getId() + ", 错误: " + e.getMessage());
+            LogSystem.error("加载配置失败: " + packageInfo.getId() + ", 错误: " + e.getMessage());
         }
     }
 
@@ -398,7 +398,7 @@ public class ModPackageManager {
     public boolean unloadPackage(String packageId) {
         PackageInfo packageInfo = loadedPackages.get(packageId);
         if (packageInfo == null) {
-            LogSystem.warningLog("要卸载的追加包未加载: " + packageId);
+            LogSystem.warning("要卸载的追加包未加载: " + packageId);
             return false;
         }
         
@@ -417,7 +417,7 @@ public class ModPackageManager {
             LogSystem.systemLog("成功卸载追加包: " + packageInfo.getName());
             return true;
         } catch (Exception e) {
-            LogSystem.errorLog("卸载追加包失败: " + packageId + ", 错误: " + e.getMessage());
+            LogSystem.error("卸载追加包失败: " + packageId + ", 错误: " + e.getMessage());
             return false;
         }
     }
@@ -502,7 +502,7 @@ public class ModPackageManager {
             try {
                 listener.onPackagePreLoad(packageInfo);
             } catch (Exception e) {
-                LogSystem.errorLog("包加载前事件监听器执行失败: " + e.getMessage());
+                LogSystem.error("包加载前事件监听器执行失败: " + e.getMessage());
             }
         }
     }
@@ -515,7 +515,7 @@ public class ModPackageManager {
             try {
                 listener.onPackagePostLoad(packageInfo);
             } catch (Exception e) {
-                LogSystem.errorLog("包加载后事件监听器执行失败: " + e.getMessage());
+                LogSystem.error("包加载后事件监听器执行失败: " + e.getMessage());
             }
         }
     }
@@ -528,7 +528,7 @@ public class ModPackageManager {
             try {
                 listener.onPackagePreUnload(packageInfo);
             } catch (Exception e) {
-                LogSystem.errorLog("包卸载前事件监听器执行失败: " + e.getMessage());
+                LogSystem.error("包卸载前事件监听器执行失败: " + e.getMessage());
             }
         }
     }
@@ -541,7 +541,7 @@ public class ModPackageManager {
             try {
                 listener.onPackagePostUnload(packageInfo);
             } catch (Exception e) {
-                LogSystem.errorLog("包卸载后事件监听器执行失败: " + e.getMessage());
+                LogSystem.error("包卸载后事件监听器执行失败: " + e.getMessage());
             }
         }
     }

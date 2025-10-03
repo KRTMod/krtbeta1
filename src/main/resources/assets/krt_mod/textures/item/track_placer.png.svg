@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- 轨道平面图 - 轨道铺设器纹理 -->
+  <rect width="16" height="16" fill="#F5F5F5"/>
+  
+  <!-- 轨道基座 -->
+  <rect x="3" y="6" width="10" height="4" fill="#A0A0A0"/>
+  
+  <!-- 轨道中间的两条线 -->
+  <rect x="3" y="7" width="10" height="1" fill="#606060"/>
+  <rect x="3" y="8" width="10" height="1" fill="#606060"/>
+  
+  <!-- 轨道两端的固定器 -->
+  <rect x="2" y="5" width="1" height="6" fill="#707070"/>
+  <rect x="13" y="5" width="1" height="6" fill="#707070"/>
+  
+  <!-- 轨道连接点 -->
+  <circle cx="3" cy="8" r="1.5" fill="#505050"/>
+  <circle cx="8" cy="8" r="1.5" fill="#505050"/>
+  <circle cx="13" cy="8" r="1.5" fill="#505050"/>
+</svg>

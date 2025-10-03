@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- 信号方块纹理 -->
+  <rect x="0" y="0" width="16" height="16" fill="#222222"/>
+  
+  <!-- 信号设备外壳 -->
+  <rect x="3" y="3" width="10" height="10" fill="#333333" stroke="#444444" stroke-width="1"/>
+  
+  <!-- 信号指示灯区域 -->
+  <rect x="5" y="5" width="6" height="8" fill="#111111"/>
+  
+  <!-- 红色信号灯 -->
+  <circle cx="8" cy="6" r="1" fill="#990000"/>
+  <circle cx="8" cy="6" r="0.5" fill="#FF0000"/>
+  
+  <!-- 黄色信号灯 -->
+  <circle cx="8" cy="8" r="1" fill="#996600"/>
+  <circle cx="8" cy="8" r="0.5" fill="#FFAA00"/>
+  
+  <!-- 绿色信号灯 -->
+  <circle cx="8" cy="10" r="1" fill="#009900"/>
+  <circle cx="8" cy="10" r="0.5" fill="#00FF00"/>
+</svg>

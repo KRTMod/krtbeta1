@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "facing": {
+      "north": {
+        "model": "krt_mod:block/small_tv"
+      },
+      "east": {
+        "model": "krt_mod:block/small_tv",
+        "y": 90
+      },
+      "south": {
+        "model": "krt_mod:block/small_tv",
+        "y": 180
+      },
+      "west": {
+        "model": "krt_mod:block/small_tv",
+        "y": 270
+      }
+    }
+  }
+}

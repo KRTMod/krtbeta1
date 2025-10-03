@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- 背景 -->
+  <rect width="16" height="16" fill="#1a252f"/>
+  <!-- 面板边框 -->
+  <rect x="1" y="1" width="14" height="14" fill="#16a085" stroke="#1abc9c" stroke-width="0.5"/>
+  <!-- 列车轮廓 -->
+  <path d="M3 5 L13 5 L13 11 L12 12 L4 12 L3 11 Z" fill="#2c3e50" stroke="#ecf0f1" stroke-width="0.5"/>
+  <!-- 车窗 -->
+  <rect x="4" y="6" width="2" height="2" fill="#3498db" stroke-width="0.5" stroke="#2980b9"/>
+  <rect x="7" y="6" width="2" height="2" fill="#3498db" stroke-width="0.5" stroke="#2980b9"/>
+  <rect x="10" y="6" width="1" height="2" fill="#3498db" stroke-width="0.5" stroke="#2980b9"/>
+  <!-- 控制面板元素 -->
+  <rect x="4" y="10" width="1" height="1" fill="#e74c3c"/>
+  <rect x="7" y="10" width="1" height="1" fill="#f39c12"/>
+  <rect x="10" y="10" width="1" height="1" fill="#2ecc71"/>
+  <!-- 列车轨道元素 -->
+  <path d="M3 14 L13 14" stroke="#95a5a6" stroke-width="0.5"/>
+  <path d="M3 13 L13 13" stroke="#95a5a6" stroke-width="0.5" stroke-dasharray="1,1"/>
+</svg>

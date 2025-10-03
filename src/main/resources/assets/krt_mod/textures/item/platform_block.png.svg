@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- 站台方块纹理 - 石质纹理背景 -->
+  <rect x="0" y="0" width="16" height="16" fill="#AAAAAA"/>
+  
+  <!-- 石质纹理细节 -->
+  <rect x="2" y="2" width="12" height="12" fill="#BBBBBB" stroke="#999999" stroke-width="1"/>
+  <rect x="4" y="4" width="8" height="8" fill="#CCCCCC" stroke="#999999" stroke-width="0.5"/>
+  
+  <!-- 站台边缘标记 -->
+  <rect x="0" y="6" width="16" height="4" fill="#888888"/>
+  <rect x="0" y="7" width="16" height="2" fill="#AAAAAA"/>
+  
+  <!-- 细节纹理 -->
+  <rect x="1" y="1" width="1" height="1" fill="#777777"/>
+  <rect x="14" y="1" width="1" height="1" fill="#777777"/>
+  <rect x="1" y="14" width="1" height="1" fill="#777777"/>
+  <rect x="14" y="14" width="1" height="1" fill="#777777"/>
+</svg>

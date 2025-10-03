@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- 线路设置面板侧边纹理 - 灰色金属质感 -->
+  <rect width="16" height="16" fill="#555555"/>
+  <!-- 金属边框 -->
+  <rect x="0" y="0" width="16" height="1" fill="#404040"/>
+  <rect x="0" y="15" width="16" height="1" fill="#404040"/>
+  <rect x="0" y="0" width="1" height="16" fill="#404040"/>
+  <rect x="15" y="0" width="1" height="16" fill="#404040"/>
+  <!-- 垂直金属线条 -->
+  <rect x="4" y="0" width="1" height="16" fill="#404040"/>
+  <rect x="11" y="0" width="1" height="16" fill="#404040"/>
+  <!-- 螺丝纹理 -->
+  <circle cx="2" cy="2" r="1" fill="#404040"/>
+  <circle cx="14" cy="2" r="1" fill="#404040"/>
+  <circle cx="2" cy="14" r="1" fill="#404040"/>
+  <circle cx="14" cy="14" r="1" fill="#404040"/>
+</svg>

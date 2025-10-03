@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- 列车操控面板侧边纹理 - 深蓝灰色 -->
+  <rect width="16" height="16" fill="#444455"/>
+  <!-- 金属边框 -->
+  <rect x="0" y="0" width="16" height="1" fill="#333344"/>
+  <rect x="0" y="15" width="16" height="1" fill="#333344"/>
+  <rect x="0" y="0" width="1" height="16" fill="#333344"/>
+  <rect x="15" y="0" width="1" height="16" fill="#333344"/>
+  <!-- 控制面板侧边的细节 -->
+  <rect x="2" y="3" width="12" height="1" fill="#333344"/>
+  <rect x="2" y="8" width="12" height="1" fill="#333344"/>
+  <rect x="2" y="13" width="12" height="1" fill="#333344"/>
+  <circle cx="2" cy="6" r="1" fill="#333344"/>
+  <circle cx="14" cy="6" r="1" fill="#333344"/>
+  <circle cx="2" cy="11" r="1" fill="#333344"/>
+  <circle cx="14" cy="11" r="1" fill="#333344"/>
+</svg>

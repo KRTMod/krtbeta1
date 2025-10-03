@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "front": "krt_mod:block/train_control_panel.png",
+    "side": "krt_mod:block/train_control_panel_side.png",
+    "top": "krt_mod:block/train_control_panel_top.png"
+  }
+}

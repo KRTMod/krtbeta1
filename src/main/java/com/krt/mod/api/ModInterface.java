@@ -74,7 +74,7 @@ public class ModInterface {
                 LogSystem.systemLog("已创建追加包配置文件: " + configFile.toAbsolutePath());
             }
         } catch (IOException e) {
-            LogSystem.errorLog("初始化追加包目录失败: " + e.getMessage());
+            LogSystem.error("初始化追加包目录失败: " + e.getMessage());
         }
     }
 
@@ -96,7 +96,7 @@ public class ModInterface {
                 }
             }
         } catch (IOException e) {
-            LogSystem.errorLog("加载追加包失败: " + e.getMessage());
+            LogSystem.error("加载追加包失败: " + e.getMessage());
         }
     }
 
@@ -108,7 +108,7 @@ public class ModInterface {
             // 检查包是否包含package.json文件
             Path packageJsonPath = packagePath.resolve("package.json");
             if (!Files.exists(packageJsonPath)) {
-                LogSystem.warningLog("追加包不包含package.json文件: " + packagePath.getFileName());
+                LogSystem.warning("追加包不包含package.json文件: " + packagePath.getFileName());
                 return false;
             }
             
@@ -118,7 +118,7 @@ public class ModInterface {
                 
                 // 验证包的基本信息
                 if (!packageJson.has("id") || !packageJson.has("version") || !packageJson.has("name")) {
-                    LogSystem.warningLog("追加包缺少必要信息: " + packagePath.getFileName());
+                    LogSystem.warning("追加包缺少必要信息: " + packagePath.getFileName());
                     return false;
                 }
                 
@@ -128,7 +128,7 @@ public class ModInterface {
                 
                 // 检查包是否已经加载
                 if (loadedPackages.containsKey(packageId)) {
-                    LogSystem.warningLog("追加包ID重复，跳过加载: " + packageId);
+                    LogSystem.warning("追加包ID重复，跳过加载: " + packageId);
                     return false;
                 }
                 
@@ -153,7 +153,7 @@ public class ModInterface {
                 
                 // 验证依赖
                 if (!verifyDependencies(modPackage)) {
-                    LogSystem.warningLog("追加包依赖验证失败，跳过加载: " + packageId);
+                    LogSystem.warning("追加包依赖验证失败，跳过加载: " + packageId);
                     return false;
                 }
                 
@@ -169,7 +169,7 @@ public class ModInterface {
                 return true;
             }
         } catch (Exception e) {
-            LogSystem.errorLog("加载追加包失败: " + packagePath.getFileName() + ", 错误: " + e.getMessage());
+            LogSystem.error("加载追加包失败: " + packagePath.getFileName() + ", 错误: " + e.getMessage());
             return false;
         }
     }
@@ -252,7 +252,7 @@ public class ModInterface {
                 }
             }
         } catch (Exception e) {
-            LogSystem.errorLog("加载追加包资源失败: " + modPackage.getName() + ", 错误: " + e.getMessage());
+            LogSystem.error("加载追加包资源失败: " + modPackage.getName() + ", 错误: " + e.getMessage());
         }
     }
 
@@ -261,7 +261,7 @@ public class ModInterface {
      */
     public boolean unloadPackage(String packageId) {
         if (!loadedPackages.containsKey(packageId)) {
-            LogSystem.warningLog("要卸载的追加包未加载: " + packageId);
+            LogSystem.warning("要卸载的追加包未加载: " + packageId);
             return false;
         }
         
@@ -302,14 +302,14 @@ public class ModInterface {
         try {
             // 检查包ID是否已存在
             if (loadedPackages.containsKey(packageId)) {
-                LogSystem.warningLog("追加包ID已存在: " + packageId);
+                LogSystem.warning("追加包ID已存在: " + packageId);
                 return null;
             }
             
             // 创建包目录
             Path packageDir = Paths.get("krt_packages").resolve(packageId);
             if (Files.exists(packageDir)) {
-                LogSystem.warningLog("追加包目录已存在: " + packageId);
+                LogSystem.warning("追加包目录已存在: " + packageId);
                 return null;
             }
             Files.createDirectories(packageDir);
@@ -346,7 +346,7 @@ public class ModInterface {
             // 加载新创建的包
             return loadPackage(packageDir) ? loadedPackages.get(packageId) : null;
         } catch (Exception e) {
-            LogSystem.errorLog("创建新追加包失败: " + e.getMessage());
+            LogSystem.error("创建新追加包失败: " + e.getMessage());
             return null;
         }
     }
@@ -399,7 +399,7 @@ public class ModInterface {
         try {
             ModPackage modPackage = loadedPackages.get(packageId);
             if (modPackage == null) {
-                LogSystem.warningLog("要导出的追加包未加载: " + packageId);
+                LogSystem.warning("要导出的追加包未加载: " + packageId);
                 return false;
             }
             
@@ -410,7 +410,7 @@ public class ModInterface {
             
             return true;
         } catch (Exception e) {
-            LogSystem.errorLog("导出追加包失败: " + packageId + ", 错误: " + e.getMessage());
+            LogSystem.error("导出追加包失败: " + packageId + ", 错误: " + e.getMessage());
             return false;
         }
     }
